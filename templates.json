@@ -35,18 +35,6 @@
                     "generate": "expression",
                     "from": "[a-f0-9]{32}",
                     "required": true
-                },
-                {
-                    "name": "JUPYTERHUB_MEMORY",
-                    "description": "Amount of memory available to JupyterHub.",
-                    "value": "512Mi",
-                    "required": true
-                },
-                {
-                    "name": "DATABASE_MEMORY",
-                    "description": "Amount of memory available to PostgreSQL.",
-                    "value": "512Mi",
-                    "required": true
                 }
             ],
             "objects": [
@@ -251,11 +239,6 @@
                                         "name": "wait-for-database",
                                         "image": "${JUPYTERHUB_IMAGE}",
                                         "command": [ "wait-for-database" ],
-                                        "resources": {
-                                            "limits": {
-                                                "memory": "${JUPYTERHUB_MEMORY}"
-                                            }
-                                        },
                                         "env": [
                                             {
                                                 "name": "JUPYTERHUB_DATABASE_PASSWORD",
@@ -278,11 +261,6 @@
                                                 "protocol": "TCP"
                                             }
                                         ],
-                                        "resources": {
-                                            "limits": {
-                                                "memory": "${JUPYTERHUB_MEMORY}"
-                                            }
-                                        },
                                         "env": [
                                             {
                                                 "name": "JUPYTERHUB_SERVICE_NAME",
@@ -451,11 +429,6 @@
                                                 "protocol": "TCP"
                                             }
                                         ],
-                                        "resources": {
-                                            "limits": {
-                                                "memory": "${DATABASE_MEMORY}"
-                                            }
-                                        },
                                         "readinessProbe": {
                                             "exec": {
                                                 "command": [
