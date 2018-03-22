@@ -565,7 +565,7 @@
                     "kind": "ImageStream",
                     "apiVersion": "v1",
                     "metadata": {
-                        "name": "${APPLICATION_NAME}-kg-s2i",
+                        "name": "${APPLICATION_NAME}-kg-img",
                         "labels": {
                             "app": "${APPLICATION_NAME}"
                         }
