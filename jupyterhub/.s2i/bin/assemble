@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -eo pipefail
+
 # Run original S2I builder script.
 
 /opt/app-root/builder/assemble
