@@ -24,6 +24,10 @@ class CustomLocalProcessSpawner(LocalProcessSpawner):
         env['LD_PRELOAD'] = os.environ['LD_PRELOAD']
         env['NSS_WRAPPER_PASSWD'] = os.environ['NSS_WRAPPER_PASSWD']
         env['NSS_WRAPPER_GROUP'] = os.environ['NSS_WRAPPER_GROUP']
+        env['PYTHONUNBUFFERED'] = os.environ['PYTHONUNBUFFERED']
+        env['PYTHONIOENCODING'] = os.environ['PYTHONIOENCODING']
+        env['KG_URL'] = os.environ['KG_URL']
+        env['KG_AUTH_TOKEN'] = os.environ['KG_AUTH_TOKEN']
         return env
 
     def make_preexec_fn(self, name):
