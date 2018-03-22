@@ -96,7 +96,7 @@
                     "kind": "ImageStream",
                     "apiVersion": "v1",
                     "metadata": {
-                        "name": "${APPLICATION_NAME}-s2i",
+                        "name": "${APPLICATION_NAME}-hub-s2i",
                         "labels": {
                             "app": "${APPLICATION_NAME}"
                         }
@@ -106,7 +106,7 @@
                     "kind": "BuildConfig",
                     "apiVersion": "v1",
                     "metadata": {
-                        "name": "${APPLICATION_NAME}-s2i",
+                        "name": "${APPLICATION_NAME}-hub-s2i",
                         "labels": {
                             "app": "${APPLICATION_NAME}"
                         }
@@ -138,7 +138,7 @@
                         "output": {
                             "to": {
                                 "kind": "ImageStreamTag",
-                                "name": "${APPLICATION_NAME}-s2i:latest"
+                                "name": "${APPLICATION_NAME}-hub-s2i:latest"
                             }
                         }
                     }
@@ -147,7 +147,7 @@
                     "kind": "ImageStream",
                     "apiVersion": "v1",
                     "metadata": {
-                        "name": "${APPLICATION_NAME}-img",
+                        "name": "${APPLICATION_NAME}-hub-img",
                         "labels": {
                             "app": "${APPLICATION_NAME}"
                         }
@@ -157,7 +157,7 @@
                     "kind": "BuildConfig",
                     "apiVersion": "v1",
                     "metadata": {
-                        "name": "${APPLICATION_NAME}-img",
+                        "name": "${APPLICATION_NAME}-hub-img",
                         "labels": {
                             "app": "${APPLICATION_NAME}"
                         }
@@ -183,14 +183,14 @@
                             "sourceStrategy": {
                                 "from": {
                                     "kind": "ImageStreamTag",
-                                    "name": "${APPLICATION_NAME}-s2i"
+                                    "name": "${APPLICATION_NAME}-hub-s2i:latest"
                                 }
                             }
                         },
                         "output": {
                             "to": {
                                 "kind": "ImageStreamTag",
-                                "name": "${APPLICATION_NAME}-s2i:latest"
+                                "name": "${APPLICATION_NAME}-hub-img:latest"
                             }
                         },
 			"resources": {
@@ -227,7 +227,7 @@
                                     ],
                                     "from": {
                                         "kind": "ImageStreamTag",
-                                        "name": "${APPLICATION_NAME}-img"
+                                        "name": "${APPLICATION_NAME}-hub-img:latest"
                                     }
                                 }
                             }
