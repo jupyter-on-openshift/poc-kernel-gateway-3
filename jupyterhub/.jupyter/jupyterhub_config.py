@@ -2,7 +2,13 @@ import os
 
 from jupyterhub.spawner import LocalProcessSpawner
 
-class DefaultUserLocalProcessSpawner(LocalProcessSpawner):
+config = '/opt/app-root/src/.jupyter/jupyter_notebook_config.py'
+
+class CustomLocalProcessSpawner(LocalProcessSpawner):
+
+    cmd = [ 'jupyter', 'lab' ]
+
+    args = [ '--config=%s' % config ]
 
     def user_env(self, env):
         env['USER'] = 'default'
@@ -28,35 +34,4 @@ class DefaultUserLocalProcessSpawner(LocalProcessSpawner):
             os.chdir(home)
         return preexec
 
-config = '/opt/app-root/src/.jupyter/jupyter_notebook_config.py'
-
-class NB2KGLocalProcessSpawner(DefaultUserLocalProcessSpawner):
-
-    args = [ '--config=%s' % config ]
-
-    def _options_form_default(self):
-        return """
-        <label for="gateway">Kernel Gateway</label>
-        <input name="gateway" placeholder="http://nb2kg-kg:8080/"></input>
-        <label for="token">Auth Token</label>
-        <input name="token" placeholder="colonels"></input>
-        """
-    
-    def options_from_form(self, formdata):
-        options = {}
-        options['gateway'] = formdata.get('gateway', [''])[0]
-        if not options['gateway']:
-            raise RuntimeError('Kernel Gateway option required.')
-        options['token'] = formdata.get('token', [''])[0]
-        if not options['token']:
-            raise RuntimeError('Auth Token option required.')
-        return options
-
-    def get_env(self):
-        env = super().get_env()
-        options = self.user_options
-        env['KG_URL'] = options['gateway']
-        env['KG_AUTH_TOKEN'] = options['token']
-        return env
-
-c.JupyterHub.spawner_class = NB2KGLocalProcessSpawner
+c.JupyterHub.spawner_class = CustomLocalProcessSpawner
