@@ -181,11 +181,11 @@
                                 "name": "${APPLICATION_NAME}-hub-img:latest"
                             }
                         },
-			"resources": {
-			    "limits": {
-				"memory": "3Gi"
-			    }
-			}
+                        "resources": {
+                            "limits": {
+                                "memory": "3Gi"
+                            }
+                        }
                     }
                 },
                 {
